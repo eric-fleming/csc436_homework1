@@ -145,9 +145,15 @@
     function alphaNumeric(char){
         let ascii = char.charCodeAt(0);
         if(ascii >=65 && ascii <=90){
+            //upper
             return true;
         }
         else if(ascii >=97 && ascii <= 122){
+            //lower
+            return true;
+        }
+        else if (ascii == 32){
+            //space char
             return true;
         }
         else{
@@ -166,10 +172,21 @@
         let startup_list = doc.querySelectorAll("#rootContainer > div > div");
         console.log(startup_list);
 
+        //get each element from the nodeList
         for(let item=0;item<startup_list.length;item++){
             let text = startup_list[item].innerHTML;
             text = text.trim();
-
+            let newtext = "";
+            //process each list item to replace special chars with a space char
+            for(let c=0;c<text.length;c++){
+                let char = text[c];
+                if(alphaNumeric(char)){
+                    newtext += char;
+                }
+            }
+            newtext = newtext.trim();
+            //replace old text with new text
+            startup_list[item].innerHTML = newtext;
         }
 
 
