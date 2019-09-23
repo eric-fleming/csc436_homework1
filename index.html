@@ -141,6 +141,20 @@
         return reversedStartups;
     }
 
+    /*This function helps verify if a character is special or regular*/
+    function alphaNumeric(char){
+        let ascii = char.charCodeAt(0);
+        if(ascii >=65 && ascii <=90){
+            return true;
+        }
+        else if(ascii >=97 && ascii <= 122){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     function cleanAndCountCharacters() {
         console.log('CLEAN AND COUNT CHARACTERS');
         /*
@@ -148,6 +162,16 @@
               DISPLAYS THE NUMBER OF REMAINING CHARACTERS NEXT TO THE FULL WORD.
               DONT FORGET TO REMOVE LEADING AND TRAILING WHITESPACES AS WELL
         */
+        let doc = document;
+        let startup_list = doc.querySelectorAll("#rootContainer > div > div");
+        console.log(startup_list);
+
+        for(let item=0;item<startup_list.length;item++){
+            let text = startup_list[item].innerHTML;
+            text = text.trim();
+
+        }
+
 
     }
     
