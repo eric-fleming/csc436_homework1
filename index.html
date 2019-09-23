@@ -127,6 +127,7 @@
 
     function chicagoStartupsReverse() {
         var reversedStartups = [];
+
         /*
             TODO: REVERSE THE CONTENTS OF THE ARRAY WITHOUT USING THE BUILT IN REVERSE METHOD
                   RETURN THE REVERSED ARRAY
@@ -152,6 +153,9 @@
             //lower
             return true;
         }
+        else if(ascii >= 48 && ascii <= 57){
+            return true;
+        }
         else if (ascii == 32){
             //space char
             return true;
@@ -161,6 +165,17 @@
         }
     }
 
+    /* In many of the tasks I need to grab the list of start-ups to use.
+    ** So I just made a helper function to get the list for me instead of 
+    ** re-programming it each time.
+    */
+
+    function getStartUps(){
+        let doc = document;
+        let startup_list = doc.querySelectorAll("#rootContainer > div > div");
+        return startup_list;
+    }
+
     function cleanAndCountCharacters() {
         console.log('CLEAN AND COUNT CHARACTERS');
         /*
@@ -168,17 +183,19 @@
               DISPLAYS THE NUMBER OF REMAINING CHARACTERS NEXT TO THE FULL WORD.
               DONT FORGET TO REMOVE LEADING AND TRAILING WHITESPACES AS WELL
         */
-        let doc = document;
-        let startup_list = doc.querySelectorAll("#rootContainer > div > div");
+
+        //custom function I made
+        let startup_list = getStartUps();
         console.log(startup_list);
 
         //get each element from the nodeList
         for(let item=0;item<startup_list.length;item++){
             let text = startup_list[item].innerHTML;
             text = text.trim();
-            let newtext = "";
+            let newtext = text.substring(0, 5);
             //process each list item to replace special chars with a space char
-            for(let c=0;c<text.length;c++){
+            for(let c=5;c<text.length;c++){
+                //I start at c = 5 to keep the indexing
                 let char = text[c];
                 if(alphaNumeric(char)){
                     newtext += char;
