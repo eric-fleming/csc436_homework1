@@ -115,7 +115,7 @@
             }
             else {
                 //TODO:: REPLACE [chicagoStartups.reverse()] WITH A FUNCTION CALLED "chicagoStartupsReverse"
-                chicagoStartups.reverse().forEach( function(startup) {
+                chicagoStartupsReverse().forEach( function(startup) {
                     var childDiv = document.createElement('div');
                     var text = document.createTextNode(startup);
                     childDiv.appendChild(text);
@@ -127,6 +127,25 @@
 
     function chicagoStartupsReverse() {
         var reversedStartups = [];
+        let startup_element_array = getStartUps();
+        let len = startup_element_array.length;
+
+        let startup_array = []
+
+        for(let q=0;q<len;q++){
+            startup_array[q] = startup_element_array[q].innerHTML;
+        }
+
+        //go Halfway down the list and swap the values at each index.
+        for(let q = 0; q < len/2;q++){
+            let temp = startup_array[q];
+            startup_array[q] = startup_array[len-q-1];
+            startup_array[len-q-1] = temp;
+        }
+        console.log("---- The string array----");
+        console.log(startup_array);
+        console.log("---- The string array----");
+        return startup_array;
 
         /*
             TODO: REVERSE THE CONTENTS OF THE ARRAY WITHOUT USING THE BUILT IN REVERSE METHOD
