@@ -67,6 +67,8 @@
                 'Shiftgig',
                 'ParkWhiz'
             ];
+            //added new global field to keep track of letters
+            var letterCountsObj = new Object();
 
             function clearDocument() {
                 var rootDiv = document.getElementById('rootContainer');
@@ -147,13 +149,16 @@
                 let ascii = char.charCodeAt(0);
                 if (ascii >= 65 && ascii <= 90) {
                     //upper
+                    updateCharCount(ascii,"letter",65);
                     return true;
                 }
                 else if (ascii >= 97 && ascii <= 122) {
                     //lower
+                    updateCharCount(ascii, "letter", 97);
                     return true;
                 }
                 else if (ascii >= 48 && ascii <= 57) {
+                    updateCharCount(ascii, "number", 48);
                     return true;
                 }
                 else if (ascii == 32) {
@@ -162,6 +167,16 @@
                 }
                 else {
                     return false;
+                }
+            }
+
+            //This will call the letterCountsObj and increment the proper index
+            function updateCharCount(charCode,charType,offset){
+                if(charType == "letter"){
+                    letterCountsObj.letters[charCode - offset]++;
+                }
+                else if(charType == "number" && offset == 48){
+                    letterCountsObj.numbers[charCode - offset]++;
                 }
             }
 
@@ -222,6 +237,8 @@
                     chicagoStartups[item] = newtext;
                     visible_list[item].innerHTML = item + " .) " + newtext + " (len = " + counts[item] + ")";
                 }
+                console.log("---- Character Counts ----");
+                console.table(letterCountsObj);
 
             }
 
@@ -372,15 +389,23 @@
                     console.log("Make it gold!");
                     btn.classList.add("gold");
                 });
-
-
             }
+
+            function initLetterCount(){
+                letterCountsObj.letters = new Array(26);
+                letterCountsObj.letters.fill(0);
+                letterCountsObj.numbers = new Array(10);
+                letterCountsObj.numbers.fill(0);
+                Object.seal(letterCountsObj);
+            }
+
             function run() {
                 clearDocument();
                 initDocument();
                 initReverse();
                 addToggleButton();
                 initColor();
+                initLetterCount();
                 
                 function completed(){
                     console.log("Homework Assignment Completed! :)");
