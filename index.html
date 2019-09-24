@@ -77,7 +77,7 @@
     }
 
     function initDocument() {
-        clearDocument();
+        //took out clear document to make code more modular.
         var rootDiv = document.createElement('div');
         rootDiv.id = 'rootContainer';
 
@@ -127,38 +127,20 @@
 
     function chicagoStartupsReverse() {
         var reversedStartups = [];
-        let startup_element_array = getStartUps();
-        let len = startup_element_array.length;
+        let len = chicagoStartups.length;
 
-        let startup_array = []
-
-        for(let q=0;q<len;q++){
-            startup_array[q] = startup_element_array[q].innerHTML;
+        //Load the elements in reverse order.
+        for(let q=0; q<len; q++){
+            reversedStartups[q] = chicagoStartups[len-q-1];
         }
-
-        //go Halfway down the list and swap the values at each index.
-        for(let q = 0; q < len/2;q++){
-            let temp = startup_array[q];
-            startup_array[q] = startup_array[len-q-1];
-            startup_array[len-q-1] = temp;
-        }
-        return startup_array;
-
-        /*
-            TODO: REVERSE THE CONTENTS OF THE ARRAY WITHOUT USING THE BUILT IN REVERSE METHOD
-                  RETURN THE REVERSED ARRAY
-
-            TIPS: 
-                1.  REVIEW JAVASCRIPT ARRAY DATA STRUCTURE AND THE BUILTIN METHODS PROVIDED TO ALL ARRAYS
-
-                2.  THIS IS A COMMON JOB INTERVIEW QUESTION, THAT SHOULD BE SOLVABLE BASED ON AN UNDERSTANDING OF
-                    DATA STRUTUCTURES REGARDLESS OF THE PROGRAMMING LANGUAGE
-        
-        */
         return reversedStartups;
+
+            //TODO: REVERSE THE CONTENTS OF THE ARRAY WITHOUT USING THE BUILT IN REVERSE METHOD
+                  //RETURN THE REVERSED ARRAY
     }
 
-    /*This function helps verify if a character is special or regular*/
+
+    //This function helps verify if a character is special or regular
     function alphaNumeric(char){
         let ascii = char.charCodeAt(0);
         if(ascii >=65 && ascii <=90){
@@ -188,28 +170,96 @@
 
     function getStartUps(){
         let doc = document;
-        let startup_list = doc.querySelectorAll("#rootContainer > div > div");
+        let query = "#rootContainer > div > div"
+        let startup_list = Array.prototype.slice.call(doc.querySelectorAll(query));
         return startup_list;
     }
 
+    function doubleTrim(str){
+        let right = str.trim();
+        let left = right.trimStart();
+        return left;
+    }
+
+
     function cleanAndCountCharacters() {
         console.log('CLEAN AND COUNT CHARACTERS');
-        /*
-            TODO: REMOVES ANY SPECIAL CHARACTERS FROM EACH COMPANY NAME AND
-              DISPLAYS THE NUMBER OF REMAINING CHARACTERS NEXT TO THE FULL WORD.
-              DONT FORGET TO REMOVE LEADING AND TRAILING WHITESPACES AS WELL
+        let len = chicagoStartups.length;
+        //cleans the surrounding white space before and after the strings.
+        chicagoStartups = chicagoStartups.map(x => x.trim());
+        chicagoStartups = chicagoStartups.map(x => x.trimStart());
+
+        let counts = [];
+
+        let visible_list = [];
+        visible_list = getStartUps();
+
+
+        //get each element from the nodeList
+        for (let item = 0; item < len; item++) {
+            //cache
+            let text = chicagoStartups[item];
+            let newtext = "";
+            //only add regular characters
+            for (let c = 0; c < text.length; c++) {
+                let char = text[c];
+                if (alphaNumeric(char)) {
+                    newtext += char;
+                }
+            }
+            newtext = doubleTrim(newtext);
+            counts[item] = newtext.length;
+
+            //replace old text with new text with the length
+            chicagoStartups[item] = newtext;
+
+            visible_list[item].innerHTML = item+" .) "+newtext + " (len = " + counts[item] + ")";
+        }
+
+        
+        /* 
+        //create method to rewrite 
+        function rewrite(chi){
+            let old_start_ups = getStartUps();
+            console.log(old_start_ups);
+            let len = old_start_ups.len;
+
+            for(let s=0;s<len;s++){
+                old_start_ups[s].innerHTML = s+" .) "+chi[s];
+            }
+        }
+        //rewrite(chicagoStartups);
         */
+    }
+    /*
+    function cleanAndCountCharacters() {
+        console.log('CLEAN AND COUNT CHARACTERS');
+        
+            //TODO: REMOVES ANY SPECIAL CHARACTERS FROM EACH COMPANY NAME AND
+            //DISPLAYS THE NUMBER OF REMAINING CHARACTERS NEXT TO THE FULL WORD.
+            //DONT FORGET TO REMOVE LEADING AND TRAILING WHITESPACES AS WELL
+        
 
         //custom function I made
-        let startup_list = getStartUps();
+        let startup_list = [];
+        startup_list = getStartUps();
+
+        let start_up_text = startup_list.map( x => x.innerHTML);
+        console.table(start_up_text)
+        let trimRight = start_up_text.map( x => x.trim());
+        let clean_start_up_text = trimRight.map(x => x.trimStart());
+
 
         //get each element from the nodeList
         for(let item=0;item<startup_list.length;item++){
-            let text = startup_list[item].innerHTML;
-            text = text.trim();
-            let newtext = text.substring(0, 5);
+            //let text = startup_list[item].innerHTML;
+            //text = text.trim();
+            //text = text.trimStart();
+            let text = clean_start_up_text[item];
+            let delim = text.indexOf(".) ")+2;
+            let newtext = text.substring(0, delim);
             //process each list item to replace special chars with a space char
-            for(let c=5;c<text.length;c++){
+            for(let c=delim;c<text.length;c++){
                 //I start at c = 5 to keep the indexing
                 let char = text[c];
                 if(alphaNumeric(char)){
@@ -217,14 +267,17 @@
                 }
             }
             newtext = newtext.trim();
-            let wordLen = newtext.length - 5;
+            let wordLen = newtext.length - delim-1;
             //replace old text with new text with the length
             startup_list[item].innerHTML = newtext + " (len = "+wordLen+")";
         }
-
+        console.table(start_up_text)
 
     }
-    
+    */
+
+
+
     function initReverse() {
         var reverseContainer = document.createElement('div');
         reverseContainer.id = 'reverseContainer';
@@ -254,12 +307,6 @@
             3.  
         */
     }
-    
-    function run() {
-        initDocument();
-        initReverse();
-    }
-    run();
     
     var flags = {
         displayInstructions: true
@@ -303,4 +350,10 @@
         
     })();
 
+    function run() {
+        clearDocument();
+        initDocument();
+        initReverse();
+    }
+    run();
 </script>
