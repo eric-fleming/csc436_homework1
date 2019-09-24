@@ -253,30 +253,31 @@
 
             function toggleDisplay() {
                 console.log("Shots fired!  I'm the toggle button :p");
-
-
-                //ideas
-
                 //get container elements
                 let rootContainer = document.querySelector("#rootContainer");
                 let list = document.querySelector("#rootContainer > div");
                 let items = document.querySelectorAll("#rootContainer > div > div");
+                //convert to proper array type
+                let items_array = Array.prototype.slice.call(items);
 
                 //adjust the flex-direction to get all child elements to follow suite
                 let rootState = rootContainer.style.flexDirection;
-                if (rootState == "row") {
+                let initItemState = items_array[0].style.display;
+                if (initItemState == "block") {
                     rootContainer.style.flexDirection = "column";
+                }
+                else if(initItemState == "inline"){
+                    rootContainer.style.flexDirection = "row";
                 }
                 else {
                     rootContainer.style.flexDirection = "row";
                 }
 
-                //convert to proper array type
-                let items_array = Array.prototype.slice.call(items);
-                let stateMessage = "";
+                
                 //Adjust the display property
                 items.forEach(function (item) {
                     let displayState = item.style.display;
+                    let stateMessage = "";
 
                     if (displayState == "inline") {
                         item.style.display = "block";
