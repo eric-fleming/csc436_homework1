@@ -239,6 +239,8 @@
                 }
                 console.log("---- Character Counts ----");
                 console.table(letterCountsObj);
+                renderLetterCount();
+
 
             }
 
@@ -315,11 +317,6 @@
                     }
                     console.log(`The display state is in ${stateMessage}`);
                 });
-
-
-
-
-
 
                 /*
                 TODO: REVIEW THE CODE IN THE PROVIDED REVERSE EXAMPLE,
@@ -405,8 +402,6 @@
                 letterContainer.id = 'letterContainer';
                 document.body.appendChild(letterContainer);
 
-                let temp = letterCountsObj.letters;
-                console.log(letterCountsObj);
 
                 (letterCountsObj.letters).forEach(function (field, index) {
                     var childDiv = document.createElement('div');
@@ -420,6 +415,23 @@
                     var text = document.createTextNode(index.toString().concat(' .) ').concat(field));
                     childDiv.appendChild(text);
                     letterContainer.appendChild(childDiv);
+                });
+            }
+
+            function renderLetterCount(){
+                let letterContainer = document.querySelectorAll('#letterContainer > div');
+                //console.log(letterContainer);
+                let letterList = Array.prototype.slice.call(letterContainer);
+
+                console.log(letterList);
+                letterList.forEach(function(item,index){
+                    //console.log(item);
+                    if(index < 26){
+                        item.innerHTML = index.toString().concat(letterCountsObj.letters[index]);
+                    }
+                    else{
+                        item.innerHTML = index.toString().concat(letterCountsObj.numbers[index-26]);
+                    }
                 });
             }
 
