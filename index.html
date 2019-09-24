@@ -310,11 +310,34 @@
 
         //ideas
 
-        //get array of two boxes
+        //get container elements
         let list = document.querySelector("#rootContainer > div");
         let items = document.querySelectorAll("#rootContainer > div > div");
 
-        
+        //convert to proper array type
+        let items_array = Array.prototype.slice.call(items);
+        let stateMessage = "";
+        items.forEach(function(item){
+            let displayState = item.style.display;
+
+            if(displayState == "inline"){
+                item.style.display = "block";
+                stateMessage = "block";
+            }
+            else if(displayState == "block"){
+                item.style.display = "inline";
+                stateMessage = "inline";
+            }
+            else if(displayState == "inline-block"){
+                item.style.display = "block";
+                stateMessage = "block";
+            }
+            else{
+                item.style.display = "inline";
+                stateMessage = "inline";
+            }
+            console.log(`The display state is in ${stateMessage}`);
+        });
 
 
 
