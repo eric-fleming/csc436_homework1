@@ -29,15 +29,15 @@
             }
         
             .red {
-                background-image: red;
+                background-color: red;
             }
         
             .blue {
-                background-image: blue;
+                background-color: blue;
             }
         
             .gold {
-                background-image: gold;
+                background-color: gold;
             }
         </style>
     </head>
@@ -361,12 +361,26 @@
                 }
 
             })();
+            function initColor(){
+                let doc = document;
+                let h3 = doc.querySelector("h3");
+                let buttons_array = Array.prototype.slice.call(doc.querySelectorAll("button"));
 
+                h3.classList.add("red");
+
+                buttons_array.forEach(function(btn){
+                    console.log("Make it gold!");
+                    btn.classList.add("gold");
+                });
+
+
+            }
             function run() {
                 clearDocument();
                 initDocument();
                 initReverse();
                 addToggleButton();
+                initColor();
                 
                 function completed(){
                     console.log("Homework Assignment Completed! :)");
