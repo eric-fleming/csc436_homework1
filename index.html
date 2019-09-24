@@ -263,9 +263,10 @@
                 toggleBtn.onclick = toggleDisplay;
                 toggleBtn.appendChild(btnText);
 
-                let toggleContainer = document.createElement('div');
-                toggleContainer.appendChild(toggleBtn);
-                document.body.appendChild(toggleContainer);
+                let buttonContainer = document.createElement('div');
+                buttonContainer.id = 'buttonContainer';
+                buttonContainer.appendChild(toggleBtn);
+                document.body.appendChild(buttonContainer);
             }
 
             function toggleDisplay() {
@@ -378,6 +379,7 @@
                 }
 
             })();
+
             function initColor(){
                 let doc = document;
                 let h3 = doc.querySelector("h3");
@@ -386,7 +388,6 @@
                 h3.classList.add("red");
 
                 buttons_array.forEach(function(btn){
-                    console.log("Make it gold!");
                     btn.classList.add("gold");
                 });
             }
@@ -399,13 +400,38 @@
                 Object.seal(letterCountsObj);
             }
 
+            function addLetterCountContainer(){
+                let letterContainer = document.createElement('div');
+                letterContainer.id = 'letterContainer';
+                document.body.appendChild(letterContainer);
+
+                let temp = letterCountsObj.letters;
+                console.log(letterCountsObj);
+
+                (letterCountsObj.letters).forEach(function (field, index) {
+                    var childDiv = document.createElement('div');
+                    var text = document.createTextNode(String.fromCharCode(index + 65).concat(' .) ').concat(field));
+                    childDiv.appendChild(text);
+                    letterContainer.appendChild(childDiv);
+                });
+
+                (letterCountsObj.numbers).forEach(function (field, index) {
+                    var childDiv = document.createElement('div');
+                    var text = document.createTextNode(index.toString().concat(' .) ').concat(field));
+                    childDiv.appendChild(text);
+                    letterContainer.appendChild(childDiv);
+                });
+            }
+
             function run() {
                 clearDocument();
+                initLetterCount();
                 initDocument();
                 initReverse();
                 addToggleButton();
+                addLetterCountContainer();
                 initColor();
-                initLetterCount();
+                
                 
                 function completed(){
                     console.log("Homework Assignment Completed! :)");
