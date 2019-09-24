@@ -171,7 +171,7 @@
 
     function getStartUps(){
         let doc = document;
-        let query = "#rootContainer > div > div"
+        let query = "#rootContainer > div > div";
         let startup_list = Array.prototype.slice.call(doc.querySelectorAll(query));
         return startup_list;
     }
@@ -306,6 +306,21 @@
 
     function toggleDisplay() {
         console.log("Shots fired!  I'm the toggle button :p");
+
+
+        //ideas
+
+        //get array of two boxes
+        let list = document.querySelector("#rootContainer > div");
+        let items = document.querySelectorAll("#rootContainer > div > div");
+
+        
+
+
+
+
+
+
         /*
         TODO: REVIEW THE CODE IN THE PROVIDED REVERSE EXAMPLE,
         USE JAVASCRIPT TO ADD A CLICKABLE BUTTON CALLED "Toggle Display" ...
