@@ -292,6 +292,18 @@
         document.getElementById('rootContainer').appendChild(reverseContainer);
     }
 
+    //Create and add toggle button to the page
+    function addToggleButton(){
+        let toggleBtn = document.createElement('button');
+        let btnText = document.createTextNode('Toggle Disply');
+        toggleBtn.onclick = toggleDisplay;
+        toggleBtn.appendChild(btnText);
+
+        let toggleContainer = document.createElement('div');
+        toggleContainer.appendChild(toggleBtn);
+        document.body.appendChild(toggleContainer);
+    }
+
     function toggleDisplay() {
         /*
         TODO: REVIEW THE CODE IN THE PROVIDED REVERSE EXAMPLE, USE JAVASCRIPT TO ADD A CLICKABLE BUTTON 
@@ -355,6 +367,7 @@
         clearDocument();
         initDocument();
         initReverse();
+        addToggleButton();
     }
     run();
 </script>
