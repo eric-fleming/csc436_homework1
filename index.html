@@ -131,7 +131,8 @@
 
         //Load the elements in reverse order.
         for(let q=0; q<len; q++){
-            reversedStartups[q] = chicagoStartups[len-q-1];
+            let text = chicagoStartups[len - q - 1];
+            reversedStartups[q] = text+ " (len = " + text.length + ")";
         }
         return reversedStartups;
 
