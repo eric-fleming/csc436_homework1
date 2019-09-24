@@ -137,7 +137,7 @@
         return reversedStartups;
 
             //TODO: REVERSE THE CONTENTS OF THE ARRAY WITHOUT USING THE BUILT IN REVERSE METHOD
-                  //RETURN THE REVERSED ARRAY
+            //      RETURN THE REVERSED ARRAY
     }
 
 
@@ -164,7 +164,8 @@
         }
     }
 
-    /* In many of the tasks I need to grab the list of start-ups to use.
+    /* 
+    ** In many of the tasks I need to grab the list of start-ups to use.
     ** So I just made a helper function to get the list for me instead of 
     ** re-programming it each time.
     */
@@ -185,6 +186,11 @@
 
     function cleanAndCountCharacters() {
         console.log('CLEAN AND COUNT CHARACTERS');
+
+        //TODO: REMOVES ANY SPECIAL CHARACTERS FROM EACH COMPANY NAME AND
+        //      DISPLAYS THE NUMBER OF REMAINING CHARACTERS NEXT TO THE FULL WORD.
+        //      DONT FORGET TO REMOVE LEADING AND TRAILING WHITESPACES AS WELL
+
         let len = chicagoStartups.length;
         //cleans the surrounding white space before and after the strings.
         chicagoStartups = chicagoStartups.map(x => x.trim());
@@ -236,9 +242,7 @@
     function cleanAndCountCharacters() {
         console.log('CLEAN AND COUNT CHARACTERS');
         
-            //TODO: REMOVES ANY SPECIAL CHARACTERS FROM EACH COMPANY NAME AND
-            //DISPLAYS THE NUMBER OF REMAINING CHARACTERS NEXT TO THE FULL WORD.
-            //DONT FORGET TO REMOVE LEADING AND TRAILING WHITESPACES AS WELL
+            
         
 
         //custom function I made
@@ -311,12 +315,23 @@
         //ideas
 
         //get container elements
+        let rootContainer = document.querySelector("#rootContainer");
         let list = document.querySelector("#rootContainer > div");
         let items = document.querySelectorAll("#rootContainer > div > div");
+
+        //adjust the flex-direction to get all child elements to follow suite
+        let rootState = rootContainer.style.flexDirection;
+        if(rootState == "row"){
+            rootContainer.style.flexDirection = "column";
+        }
+        else{
+            rootContainer.style.flexDirection = "row";
+        }
 
         //convert to proper array type
         let items_array = Array.prototype.slice.call(items);
         let stateMessage = "";
+        //Adjust the display property
         items.forEach(function(item){
             let displayState = item.style.display;
 
@@ -369,34 +384,34 @@
     (function() {
         if (flags.displayInstructions) {
             console.log(`
-                            ASSUMPTIONS: !!! NO JQUERY !!! 
-                                         TODO INDICATES THAT A SOLUTION IS REQUIRED
-                                         PLEASE INCLUDE YOUR GITHUB URL AS A COMMENT
-                                         EX. // https://github.com/Chandler-Gegg/javascript101.git
+                ASSUMPTIONS:                !!! NO JQUERY !!! 
+                                TODO INDICATES THAT A SOLUTION IS REQUIRED
+                                PLEASE INCLUDE YOUR GITHUB URL AS A COMMENT
+                                EX. // https://github.com/Chandler-Gegg/javascript101.git
 
-                            Feel free to complete the exercises in whatever order you like.  
+                Feel free to complete the exercises in whatever order you like.  
 
-                            Make sure to push your code to your own github repo as well as SUBMIT A ZIPFILE TO D2L.
-                            HOMEWORK IS DUE WEDNESDAYS AT MIDNIGHT NO EXCEPTIONS.
-                            dont forget to slack me the url to your github account as well.  
+                Make sure to push your code to your own github repo as well as SUBMIT A ZIPFILE TO D2L.
+                HOMEWORK IS DUE WEDNESDAYS AT MIDNIGHT NO EXCEPTIONS.
+                dont forget to slack me the url to your github account as well.  
 
-                            You can earn extra credit by using the provided css classes in the style tag or additionally 
-                            you can pull in an external css library like bootstrap.  if you bring in bootstrap make sure to style
-                            the buttons using bootstraps built in button styling classes.
+                You can earn extra credit by using the provided css classes in the style tag or additionally 
+                you can pull in an external css library like bootstrap.  if you bring in bootstrap make sure to style
+                the buttons using bootstraps built in button styling classes.
 
-                            Additionally, can earn extra credit by using an object to count the number of occurrences 
-                            of each character accross all startup names and style and display the results as part of the
-                            "cleanAndCountCharacters" function.
+                Additionally, can earn extra credit by using an object to count the number of occurrences 
+                of each character accross all startup names and style and display the results as part of the
+                "cleanAndCountCharacters" function.
 
-                            If you are having trouble getting started, I would spend a lot of time reviewing the source code provided in the reverse example.
-                            Make sure I understand whats going on and do a google search on anything that is confusing.  
-                            THE BETTER YOU UNDERSTAND THE EXAMPLE THE EASIER THIS SHOULD BE. THEN REVIEW THE TODOS AND START BY TRYING TO SOLVE THE EASIEST
-                            PROBLEM.
+                If you are having trouble getting started, I would spend a lot of time reviewing the source code provided in the reverse example.
+                Make sure I understand whats going on and do a google search on anything that is confusing.  
+                THE BETTER YOU UNDERSTAND THE EXAMPLE THE EASIER THIS SHOULD BE. THEN REVIEW THE TODOS AND START BY TRYING TO SOLVE THE EASIEST
+                PROBLEM.
 
-                            FROM MY OWN EXPERIENCE, I FIND THAT WHEN IM STRUGGLING WITH A PROBLEM, IT USUALLY MEANS
-                            I DONT FULLY UNDERSTAND THE TOOLS THAT I AM USING.
+                FROM MY OWN EXPERIENCE, I FIND THAT WHEN IM STRUGGLING WITH A PROBLEM, IT USUALLY MEANS
+                I DONT FULLY UNDERSTAND THE TOOLS THAT I AM USING.
 
-                            GOOD LUCK, SEE YOU ON THE FLIPPITY FLOP "\_(**/)_/"
+                GOOD LUCK, SEE YOU ON THE FLIPPITY FLOP "\_(**/)_/"
 
                         `);
         }
