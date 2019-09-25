@@ -25,4 +25,4 @@ I assumed that numbers were not special characters.  I wrote a helper function *
 In the element attribute list there is a subtle difference between innerHTML and innerText.  If the innerText has too many spaces, they will not show up in the innerHTML, but the length of the string will be reported as longer than it appears.
 
 #### Extra Credit
-I chose to apply the css styles to the page.  I decided to make the title red and the buttons gold.
+I chose to apply the css styles to the page.  I decided to make the title red and the buttons gold.  I also have the letter counts print to an area below both lists.
