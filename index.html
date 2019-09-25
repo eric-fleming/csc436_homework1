@@ -419,6 +419,7 @@
             }
 
             function renderLetterCount(){
+                addLetterCountContainer();
                 let letterContainer = document.querySelectorAll('#letterContainer > div');
                 //console.log(letterContainer);
                 let letterList = Array.prototype.slice.call(letterContainer);
@@ -427,10 +428,11 @@
                 letterList.forEach(function(item,index){
                     //console.log(item);
                     if(index < 26){
-                        item.innerHTML = index.toString().concat(letterCountsObj.letters[index]);
+                        item.innerHTML = String.fromCharCode(index + 65).concat(' .) ').concat(letterCountsObj.letters[index]);
                     }
                     else{
-                        item.innerHTML = index.toString().concat(letterCountsObj.numbers[index-26]);
+                        let adjIndex = index-26;
+                        item.innerHTML = adjIndex.toString().concat(' .) ').concat(letterCountsObj.numbers[adjIndex]);
                     }
                 });
             }
@@ -441,7 +443,6 @@
                 initDocument();
                 initReverse();
                 addToggleButton();
-                addLetterCountContainer();
                 initColor();
                 
                 

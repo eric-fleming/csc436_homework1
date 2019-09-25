@@ -1,7 +1,7 @@
 # Homework #1 (by Eric Fleming)
 
-[GitHub Website Link](https://github.com/mrfleming/csc436_homework1) </br>
-[Github Clone Reference](https://github.com/mrfleming/csc436_homework1.git) </br>
+[GitHub Website Link](https://github.com/mrfleming/csc436_homework1) <br/>
+https://github.com/mrfleming/csc436_homework1</br>
 
 There were two main goals for this assignment.
 1.  Create a function which reverses an array
@@ -23,3 +23,6 @@ I made an empty array to be filled later.  I then iterated through the original 
 #### Cleaning a string
 I assumed that numbers were not special characters.  I wrote a helper function **alphaNumeric** which essentially is a predicate to determine if a character is special or not.  If alphaNumeric returns true, you should use that character to build a new string, but if it is flase you should skip it.  I also assumed space characters were "allowable".  This means that if a space was found at the end or the beginning of a string, it would remain in the new string.  I also wrote a second helper function **doubleTrim** to apply both trimming operations for me.  One case I did not clean is what if someone put too many spaces in the middle of two words in a string.  For example, "this       has many spaces...".  If I wanted to get rid of that I would have to look up string pattern matching to see if a string contained an index for multi-space substrings, then return a new string where I slice it out and concatenate it the former and later pieces.  The browser already contained some logic for not displaying these situations so I left it as is.  
 In the element attribute list there is a subtle difference between innerHTML and innerText.  If the innerText has too many spaces, they will not show up in the innerHTML, but the length of the string will be reported as longer than it appears.
+
+#### Extra Credit
+I chose to apply the css styles to the page.  I decided to make the title red and the buttons gold.
